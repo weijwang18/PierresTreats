@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 
-namespace ToDoList.Models
+namespace PierresTreats.Models
 {
-  public class Category
+  public class Treat
   {
-    public Category()
+    public Treat()
     {
       this.JoinEntities = new HashSet<FlavorTreat>();
     }
 
-    public int CategoryId { get; set; }
+    public int TreatId { get; set; }
     public string Name { get; set; }
+    public string Description { get; set; }
     public virtual ICollection<FlavorTreat> JoinEntities { get; set; }
   }
 }

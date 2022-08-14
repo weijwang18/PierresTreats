@@ -2,12 +2,20 @@
   Layout = "_Layout";
 }
 
-@model ProjectName.Models.Item
+@model PierresTreats.Models.Flavor
 
-<h2>Add a category</h2>
+<h2>Add a treat</h2>
 
-<h4>Add a category to this task: @Html.DisplayFor(model => model.Description)</h4>
+<h4>Add a treat to this task: @Html.DisplayFor(model => model.Description)</h4>
 
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.FlavorId)
 
+  @Html.Label("Select treat")
+  @Html.DropDownList("TreatId")
 
-<p>@Html.ActionLink("Back to ", "Index")</p>
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
