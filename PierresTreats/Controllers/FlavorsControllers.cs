@@ -39,7 +39,7 @@ namespace PierresTreats.Controllers
     {
       var thisFlavor = _db.Flavors
           .Include(flavor => flavor.JoinEntities)
-          .ThenInclude(join => join.Item)
+          .ThenInclude(join => join.Flavor)
           .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
