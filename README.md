@@ -18,7 +18,7 @@
 ---
 ## Description
 
-_This is an MVC application that was built using C#. The purpose of this application is to help Mr. Pierre to market his sweet and savory treats. Users will need to log in to create, update and delete items._
+_This is an MVC application that was built using C#. The purpose of this application is to help Mr. Pierre to market his sweet and savory treats. Users need to log in to create, update and delete items._
 
 ---
 ## Setup and Installation Requirements
