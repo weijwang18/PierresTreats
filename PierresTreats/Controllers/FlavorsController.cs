@@ -12,24 +12,22 @@ using System.Security.Claims;
 namespace PierresTreats.Controllers
 {
   [Authorize]
-  public class flavorsController : Controller
+  public class FlavorsController : Controller
   {
     private readonly PierresTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public flavorsController(UserManager<ApplicationUser> userManager, PierresTreatsContext db)
+    public FlavorsController(UserManager<ApplicationUser> userManager, PierresTreatsContext db)
     {
       _userManager = userManager;
       _db = db;
     }
 
     [AllowAnonymous]
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-        var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
-        return View(userFlavors);
+      List<Flavor> model = _db.Flavors.ToList();
+      return View(model);
     }
 
     public ActionResult Create()
@@ -114,5 +112,14 @@ namespace PierresTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
   }
+
+      [HttpPost]
+    public ActionResult DeleteTreat(int joinId)
+    {
+      var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
+      _db.FlavorTreat.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 }
 }

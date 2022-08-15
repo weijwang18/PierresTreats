@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.Models;
+@model (List<Flavor> flavors, List<Treat> treats);
+
+<h1>Flavors</h1>
+
+@if (@Model.flavors.Count == 0)
+{
+  <h3>No flavors have been added yet!</h3>
+} 
+
+  @foreach(Flavor flavor in Model.flavors)
+  {
+    <li>@Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new { id = flavor.FlavorId })</li>
+  }
+
+<h1>Treats</h1>
+
+@if (@Model.treats.Count == 0)
+{
+  <h3>No treats have been added yet!</h3>
+} 
+
+@foreach (Treat treat in Model.treats)
+{
+  <li>@Html.ActionLink($"{treat.Description}", "Details", "Treats", new { id = treat.TreatId })</li>
+}
+
+<p>@Html.ActionLink("Add new treat", "Create", "Treats")</p>
+<p>@Html.ActionLink("Add new flavor", "Create", "Flavors")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
